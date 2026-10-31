@@ -1,0 +1,770 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SHREYA — The Unwritten Story</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg:#09050b;
+  --pink:#ed9bc9;
+  --rose:#a94d83;
+  --cream:#f8eaf2;
+  --muted:#b99eaf;
+}
+
+* {box-sizing:border-box;margin:0;padding:0}
+html {scroll-behavior:smooth}
+body {
+  background:var(--bg);
+  color:var(--cream);
+  font-family:'DM Sans',sans-serif;
+  overflow-x:hidden;
+}
+
+#stars {
+  position:fixed;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+}
+
+.star {
+  position:absolute;
+  width:2px;height:2px;
+  background:white;
+  border-radius:50%;
+  animation:twinkle 3s infinite alternate;
+}
+
+@keyframes twinkle {
+  from {opacity:.15}
+  to {opacity:.9;transform:scale(1.8)}
+}
+
+.intro {
+  position:fixed;
+  inset:0;
+  z-index:20;
+  background:radial-gradient(ellipse,#35162f,#09050b 75%);
+  display:grid;
+  place-items:center;
+  text-align:center;
+  padding:25px;
+  transition:1.2s;
+}
+
+.intro.hide {
+  opacity:0;
+  visibility:hidden;
+}
+
+.intro h1 {
+  font:500 clamp(55px,11vw,115px)/.85 'Cormorant Garamond';
+  margin:30px 0;
+}
+
+.intro h1 span {
+  display:block;
+  color:var(--pink);
+  font-style:italic;
+  margin-top:15px;
+}
+
+.eyebrow,.tag {
+  color:var(--pink);
+  font-size:10px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+}
+
+.intro p {
+  font-size:11px;
+  line-height:2;
+  letter-spacing:2px;
+  color:var(--muted);
+}
+
+button {
+  cursor:pointer;
+  font-family:inherit;
+}
+
+.enter,.outline {
+  border:1px solid #b96799;
+  background:transparent;
+  color:var(--cream);
+  padding:15px 25px;
+  margin-top:30px;
+  letter-spacing:2px;
+  font-size:10px;
+  text-transform:uppercase;
+  transition:.3s;
+}
+
+.enter:hover,.outline:hover {
+  background:#a94d8355;
+  box-shadow:0 0 30px #a94d8355;
+  transform:translateY(-3px);
+}
+
+header {
+  position:fixed;
+  top:0;left:0;right:0;
+  z-index:10;
+  padding:20px 6%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:linear-gradient(#09050bdd,transparent);
+  font-size:10px;
+  letter-spacing:2px;
+}
+
+header button {
+  background:transparent;
+  border:1px solid #75405f;
+  color:var(--pink);
+  padding:9px 14px;
+  font-size:9px;
+  letter-spacing:2px;
+}
+
+section {
+  position:relative;
+  z-index:1;
+  min-height:85vh;
+  padding:120px 8%;
+  display:flex;
+  align-items:center;
+}
+
+.wrap {
+  width:100%;
+  max-width:1050px;
+  margin:auto;
+}
+
+.hero,.final {
+  text-align:center;
+  justify-content:center;
+  min-height:100vh;
+  background:radial-gradient(ellipse at center,#52234844,transparent 65%);
+}
+
+.hero h2 {
+  font:500 clamp(55px,10vw,110px)/.9 'Cormorant Garamond';
+  margin:30px 0;
+}
+
+.hero h2 em,h3 em {
+  color:var(--pink);
+}
+
+.sub {
+  font-size:11px;
+  letter-spacing:3px;
+  color:var(--muted);
+  line-height:2;
+}
+
+.scroll {
+  position:absolute;
+  bottom:35px;
+  font-size:9px;
+  letter-spacing:4px;
+  color:var(--pink);
+}
+
+.split {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:70px;
+  align-items:center;
+}
+
+.poster {
+  min-height:400px;
+  background:linear-gradient(145deg,#381b35,#100812);
+  border:1px solid #75405f;
+  display:grid;
+  place-items:center;
+  position:relative;
+}
+
+.poster:before {
+  content:"";
+  position:absolute;
+  width:240px;height:240px;
+  border:1px solid #ed9bc955;
+  border-radius:50%;
+  box-shadow:0 0 80px #ed9bc933;
+}
+
+.poster span {
+  font:italic 110px 'Cormorant Garamond';
+  color:var(--pink);
+}
+
+h3 {
+  font:500 clamp(42px,6vw,72px)/.95 'Cormorant Garamond';
+  margin:22px 0;
+}
+
+.copy {
+  color:var(--muted);
+  line-height:2;
+  font-size:14px;
+  max-width:550px;
+  margin-top:18px;
+}
+
+.gallery {
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  gap:14px;
+  margin-top:40px;
+}
+
+.photo {
+  grid-column:span 4;
+  height:260px;
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(145deg,#351a33,#100812);
+  border:1px solid #75405f;
+  cursor:pointer;
+}
+
+.photo:nth-child(1),.photo:nth-child(5) {
+  grid-column:span 6;
+  height:320px;
+}
+
+.photo img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:.7s;
+}
+
+.photo:hover img {transform:scale(1.08)}
+
+.photo .placeholder {
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  color:var(--pink);
+  font:italic 25px 'Cormorant Garamond';
+}
+
+.caption {
+  position:absolute;
+  bottom:0;left:0;right:0;
+  padding:30px 15px 15px;
+  background:linear-gradient(transparent,#09050b);
+  font-size:10px;
+  letter-spacing:2px;
+}
+
+.reasonbox {
+  max-width:700px;
+  margin:35px auto;
+  padding:50px 25px;
+  border:1px solid #75405f;
+  background:#170e19;
+  text-align:center;
+}
+
+.reason-text {
+  font:500 clamp(27px,4vw,42px) 'Cormorant Garamond';
+  line-height:1.2;
+  margin:25px auto;
+}
+
+.reason-number {
+  color:var(--pink);
+  font-size:12px;
+  letter-spacing:3px;
+}
+
+.letter {
+  max-width:750px;
+  margin:35px auto;
+  padding:clamp(30px,6vw,65px);
+  background:#170e19;
+  border:1px solid #75405f;
+}
+
+.letter p {
+  font:22px/1.7 'Cormorant Garamond';
+  color:#e8d1df;
+  margin-bottom:20px;
+}
+
+.signature {
+  color:var(--pink)!important;
+  font-style:italic!important;
+  font-size:28px!important;
+}
+
+.final h3 {
+  font-size:clamp(60px,11vw,110px);
+}
+
+.final .endline {
+  font:italic 25px 'Cormorant Garamond';
+  color:var(--muted);
+}
+
+.reveal {
+  opacity:0;
+  transform:translateY(30px);
+  transition:1s;
+}
+
+.reveal.show {
+  opacity:1;
+  transform:translateY(0);
+}
+
+footer {
+  position:relative;
+  z-index:1;
+  text-align:center;
+  padding:30px;
+  color:#765d70;
+  font-size:9px;
+  letter-spacing:3px;
+}
+
+.modal {
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:30;
+  background:#050307f5;
+  place-items:center;
+  padding:20px;
+}
+
+.modal.open {display:grid}
+
+.modal img {
+  max-width:95%;
+  max-height:85vh;
+  object-fit:contain;
+}
+
+.close {
+  position:absolute;
+  top:20px;right:25px;
+  border:0;
+  background:none;
+  color:white;
+  font-size:35px;
+}
+
+@media(max-width:700px) {
+  section {padding:100px 22px}
+  .split {grid-template-columns:1fr;gap:35px}
+  .poster {min-height:300px}
+  .photo,.photo:nth-child(1),.photo:nth-child(5) {
+    grid-column:span 6;
+    height:210px;
+  }
+  .photo:nth-child(3n) {grid-column:span 12}
+}
+</style>
+</head>
+
+<body>
+
+<div id="stars"></div>
+
+<!-- OPENING -->
+<div class="intro" id="intro">
+  <div>
+    <div class="eyebrow">A LITTLE FILM · MADE FOR SHREYA</div>
+    <h1>THE UNWRITTEN <span>STORY</span></h1>
+    <p>
+      NOT EVERY STORY NEEDS A PERFECT BEGINNING.<br>
+      SOME JUST NEED A PERSON WHO MAKES IT MATTER.
+    </p>
+    <button class="enter" id="enter">Begin the film ✦</button>
+  </div>
+</div>
+
+<header>
+  <span>SHREYA · THE UNWRITTEN STORY</span>
+  <button id="musicBtn">MUSIC OFF</button>
+</header>
+
+<!-- Add your own licensed music as assets/music.mp3 -->
+<audio id="music" loop>
+  <source src="assets/music.mp3" type="audio/mpeg">
+</audio>
+
+<main>
+
+<!-- CHAPTER 1 -->
+<section class="hero" id="top">
+  <div class="wrap reveal">
+    <div class="tag">AN ORIGINAL STORY · CHAPTER 01</div>
+    <h2>Some people<br>become a <em>story.</em></h2>
+    <p class="sub">
+      AND SOMEHOW, YOU BECAME ONE OF MY FAVOURITE CHAPTERS.
+    </p>
+  </div>
+  <div class="scroll">SCROLL TO DISCOVER ↓</div>
+</section>
+
+<!-- CHAPTER 2 -->
+<section>
+  <div class="wrap split reveal">
+    <div class="poster">
+      <span>S.</span>
+    </div>
+    <div>
+      <div class="tag">CHAPTER 02 · THE PLOT TWIST</div>
+      <h3>It started<br>without a <em>script.</em></h3>
+      <p class="copy">
+        Some of the best stories begin in the most unexpected ways.
+        A random conversation, a little curiosity, and suddenly
+        a familiar name becomes a reason to smile.
+      </p>
+      <p class="copy">
+        This isn't a story about perfect moments.
+        It's about the little ones that quietly become important.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 3 -->
+<section>
+  <div class="wrap reveal">
+    <div class="tag">CHAPTER 03 · THE FRAMES</div>
+    <h3>Little moments.<br><em>Big memories.</em></h3>
+    <p class="copy">
+      Every picture has a story. These are some of the frames
+      I would never want to forget.
+    </p>
+    <div class="gallery" id="gallery"></div>
+  </div>
+</section>
+
+<!-- CHAPTER 4 -->
+<section>
+  <div class="wrap reveal" style="text-align:center">
+    <div class="tag">CHAPTER 04 · A HUNDRED LITTLE TRUTHS</div>
+    <h3>100 reasons.<br><em>One special person.</em></h3>
+    <p class="copy" style="margin:auto">
+      A little reminder, whenever you need one.
+    </p>
+    <div class="reasonbox">
+      <div class="reason-number" id="reasonNo">01 / 100</div>
+      <div class="reason-text" id="reasonText">
+        You make ordinary conversations feel a little less ordinary.
+      </div>
+      <button class="outline" id="nextReason">Another reason ↗</button>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 5 -->
+<section>
+  <div class="wrap reveal">
+    <div class="tag">CHAPTER 05 · A NOTE FROM ME</div>
+    <h3>Not a grand speech.<br><em>Just the truth.</em></h3>
+
+    <div class="letter">
+      <p>Hey Shreya,</p>
+
+      <p>
+        I don't know what every next chapter will look like,
+        and maybe that's the beautiful part.
+      </p>
+
+      <p>
+        I just wanted to make something that reminds you
+        that you matter, that your smile can make a day better,
+        and that I'm genuinely glad our paths crossed.
+      </p>
+
+      <p>
+        Keep being your wonderfully unique self.
+        I hope life gives you a hundred reasons to smile.
+      </p>
+
+      <p>
+        And when it doesn't, I hope you remember that
+        you are appreciated more than you know.
+      </p>
+
+      <p class="signature">
+        With lots of warmth,<br>
+        Your Beta ❤️
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- FINALE -->
+<section class="final">
+  <div class="wrap reveal">
+    <div class="tag">THE END OF THIS FILM · NOT THE STORY</div>
+    <h3>To be<br><em>continued...</em></h3>
+    <p class="endline">
+      Some stories are better when they keep going.
+    </p>
+    <p class="copy" style="margin:25px auto">
+      Thanks for being part of this chapter, Shreya.
+    </p>
+    <button class="outline" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+      WATCH AGAIN ↑
+    </button>
+  </div>
+</section>
+
+</main>
+
+<footer>
+MADE WITH CARE · FOR SHREYA · THE UNWRITTEN STORY
+</footer>
+
+<div class="modal" id="modal">
+  <button class="close" id="close">×</button>
+  <img id="modalImg" alt="Memory">
+</div>
+
+<script>
+
+// STARS
+const starField=document.getElementById('stars');
+
+for(let i=0;i<110;i++){
+  const s=document.createElement('i');
+  s.className='star';
+  s.style.left=Math.random()*100+'%';
+  s.style.top=Math.random()*100+'%';
+  s.style.animationDelay=Math.random()*4+'s';
+  starField.appendChild(s);
+}
+
+// PHOTO GALLERY
+const photos=[
+ ['photo1.jpeg','A moment to keep'],
+ ['photo2.jpeg','A favourite frame'],
+ ['photo3.jpeg','That smile'],
+ ['photo4.jpeg','A little memory'],
+ ['photo5.jpeg','One for the album'],
+ ['photo6.jpeg','A day to remember'],
+ ['photo7.jpeg','Just being you'],
+ ['photo8.jpeg','Another favourite'],
+ ['photo9.jpeg','A beautiful moment'],
+ ['photo10.jpeg','More chapters ahead']
+];
+
+const gallery=document.getElementById('gallery');
+
+photos.forEach(([name,caption],i)=>{
+  const card=document.createElement('div');
+  card.className='photo';
+
+  const img=document.createElement('img');
+  img.src='assets/images/'+name;
+  img.alt='Shreya memory '+(i+1);
+
+  img.onerror=()=>{
+    img.remove();
+    const placeholder=document.createElement('div');
+    placeholder.className='placeholder';
+    placeholder.textContent='FRAME '+(i+1);
+    card.prepend(placeholder);
+  };
+
+  const cap=document.createElement('div');
+  cap.className='caption';
+  cap.textContent=caption;
+
+  card.append(img,cap);
+
+  card.onclick=()=>{
+    const actual=card.querySelector('img');
+    if(actual){
+      document.getElementById('modalImg').src=actual.src;
+      document.getElementById('modal').classList.add('open');
+    }
+  };
+
+  gallery.append(card);
+});
+
+// 100 REASONS
+const reasons=[
+'You make ordinary conversations feel special.',
+'Your smile deserves its own movie soundtrack.',
+'You bring your own kind of magic into a room.',
+'You are appreciated, even on difficult days.',
+'Your little wins deserve to be celebrated.',
+'You make memories without even trying.',
+'The world is better with your kindness in it.',
+'You deserve good things and happy days.',
+'You have a way of making moments memorable.',
+'There is no one else quite like you.',
+'Your presence can turn a normal day around.',
+'Your dreams are worth chasing.',
+'You deserve people who cheer for you sincerely.',
+'You make your own story interesting.',
+'Your laughter is worth remembering.',
+'You deserve endless reasons to smile.',
+'You have your own beautiful way of seeing life.',
+'You are stronger than you sometimes realise.',
+'You make little things feel meaningful.',
+'You deserve happiness without having to earn it.',
+'You are someone worth appreciating.',
+'Your ideas and dreams matter.',
+'You deserve peaceful mornings.',
+'You deserve exciting new adventures.',
+'You make conversations worth having.',
+'Your personality is your own kind of magic.',
+'You deserve to feel proud of yourself.',
+'You make the ordinary feel extraordinary.',
+'Your happiness matters.',
+'You deserve kindness every single day.',
+'You have so much potential ahead.',
+'You make people feel remembered.',
+'You deserve beautiful surprises.',
+'You are allowed to take up space.',
+'You deserve to be celebrated.',
+'Your small achievements count too.',
+'You make life a little more colourful.',
+'You deserve genuine friendships.',
+'Your courage deserves recognition.',
+'You are more than enough.',
+'You deserve to be heard.',
+'You make the best memories in unexpected ways.',
+'Your future is full of possibilities.',
+'You deserve to laugh until your cheeks hurt.',
+'You have a special place in this story.',
+'You deserve people who understand you.',
+'You make your own sunshine.',
+'Your kindness is never wasted.',
+'You deserve to believe in yourself.',
+'You have a beautiful journey ahead.',
+'You make simple days worth remembering.',
+'You deserve compliments without a reason.',
+'Your happiness is important.',
+'You are allowed to dream big.',
+'You bring something unique to every moment.',
+'You deserve a life full of laughter.',
+'You have a wonderful way of being yourself.',
+'You deserve to feel appreciated.',
+'Your little habits make you unique.',
+'You deserve more good days than bad.',
+'You make stories worth telling.',
+'You deserve patience and understanding.',
+'You have the right to choose your own path.',
+'You deserve to be proud of your journey.',
+'You make a difference just by being you.',
+'Your smile is worth protecting.',
+'You deserve adventures you will never forget.',
+'You are capable of wonderful things.',
+'You deserve love and respect.',
+'Your presence is a gift.',
+'You deserve to be your happiest self.',
+'You make the world a little brighter.',
+'Your dreams deserve a chance.',
+'You deserve to feel confident.',
+'You have a story worth sharing.',
+'You deserve moments that take your breath away.',
+'You make life more interesting.',
+'You deserve to be celebrated for who you are.',
+'You are never ordinary.',
+'You deserve all the encouragement in the world.',
+'You make little memories feel big.',
+'Your voice deserves to be heard.',
+'You deserve genuine smiles.',
+'You have so much to look forward to.',
+'You make every chapter a little different.',
+'You deserve a beautiful tomorrow.',
+'You are appreciated more than you know.',
+'You deserve good people around you.',
+'Your uniqueness is your superpower.',
+'You deserve to enjoy every little victory.',
+'You make this story worth writing.',
+'You deserve a thousand happy moments.',
+'You have a light of your own.',
+'You deserve to keep growing.',
+'Your story is still becoming beautiful.',
+'You are a person worth celebrating.',
+'And simply, you are Shreya. That is special.'
+];
+
+let reasonIndex=0;
+
+document.getElementById('nextReason').onclick=()=>{
+  reasonIndex=(reasonIndex+1)%reasons.length;
+
+  document.getElementById('reasonNo').textContent=
+    String(reasonIndex+1).padStart(2,'0')+' / 100';
+
+  document.getElementById('reasonText').textContent=
+    reasons[reasonIndex];
+};
+
+// INTRO
+document.getElementById('enter').onclick=()=>{
+  document.getElementById('intro').classList.add('hide');
+};
+
+// REVEAL ANIMATIONS
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('show');
+    }
+  });
+},{threshold:.12});
+
+document.querySelectorAll('.reveal').forEach(el=>{
+  observer.observe(el);
+});
+
+// PHOTO LIGHTBOX
+document.getElementById('close').onclick=()=>{
+  document.getElementById('modal').classList.remove('open');
+};
+
+document.getElementById('modal').onclick=e=>{
+  if(e.target.id==='modal'){
+    e.currentTarget.classList.remove('open');
+  }
+};
+
+// MUSIC
+const music=document.getElementById('music');
+const musicBtn=document.getElementById('musicBtn');
+
+musicBtn.onclick=async()=>{
+  if(music.paused){
+    try{
+      await music.play();
+      musicBtn.textContent='MUSIC ON';
+    }catch(e){
+      alert('Add your music file at assets/music.mp3 first.');
+    }
+  }else{
+    music.pause();
+    musicBtn.textContent='MUSIC OFF';
+  }
+};
+
+</script>
+</body>
+</html>
